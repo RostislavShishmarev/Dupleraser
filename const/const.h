@@ -1,6 +1,9 @@
 #ifndef CONST_H
 #define CONST_H
 
+#define LIST_BUFSIZ 10
+#define NEWLINE_CHAR '\n'
+
 #define ERRMEM_MSG "\n\nMemory error, abort program\n\n"
 
 typedef enum {
