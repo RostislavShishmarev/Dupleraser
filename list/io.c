@@ -14,13 +14,16 @@ ErrorCode input_lists_array(List** lists_array, size_t* size) {
 	
 	List list = init_list();
 
+	int aborting = 0; // Need for correct abort if Ctrl+D will be entered without newline
+
 	do {
 		// Get char from input stream
 
 		char letter = getchar();
 		int res = (int)letter;
 
-		if (res == EOF || n_elements_in_buffer == LIST_BUFSIZ) {
+		if (aborting == 1 || n_elements_in_buffer == LIST_BUFSIZ) {
+
 			*lists_array = (List*)realloc(*lists_array, (*size + n_elements_in_buffer) * sizeof(List));
 
 			memcpy(*lists_array + *size, buffer, n_elements_in_buffer * sizeof(List));
@@ -36,13 +39,17 @@ ErrorCode input_lists_array(List** lists_array, size_t* size) {
 
 		// Make new list if newline
 
-		if (letter == CHAR_NEWLINE) {
+		if (letter == CHAR_NEWLINE || res == EOF) {
 			if (list.head != NULL) {
 				buffer[n_elements_in_buffer] = list;
 				n_elements_in_buffer += 1;
 			}
 
-			list = init_list();
+			if (res == EOF) {
+				aborting = 1;
+			} else {
+				list = init_list();
+			}
 
 			continue;
 		}
