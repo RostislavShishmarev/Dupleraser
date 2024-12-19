@@ -36,7 +36,7 @@ ErrorCode input_lists_array(List** lists_array, size_t* size) {
 
 		// Make new list if newline
 
-		if (letter == NEWLINE_CHAR) {
+		if (letter == CHAR_NEWLINE) {
 			if (list.head != NULL) {
 				buffer[n_elements_in_buffer] = list;
 				n_elements_in_buffer += 1;

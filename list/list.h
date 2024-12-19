@@ -19,5 +19,7 @@ void print_list(const List);
 void free_list(const List);
 void free_lists_array(List*, size_t);
 
+ErrorCode erase_repeated(List*);
+
 #endif
 
