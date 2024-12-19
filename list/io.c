@@ -23,7 +23,7 @@ ErrorCode input_lists_array(List** lists_array, size_t* size) {
 		if (res == EOF || n_elements_in_buffer == LIST_BUFSIZ) {
 			*lists_array = (List*)realloc(*lists_array, (*size + n_elements_in_buffer) * sizeof(List));
 
-			memcpy(*lists_array + (*size * sizeof(List)), buffer, n_elements_in_buffer * sizeof(List));
+			memcpy(*lists_array + *size, buffer, n_elements_in_buffer * sizeof(List));
 			
 			*size += n_elements_in_buffer;
 

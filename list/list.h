@@ -17,7 +17,7 @@ List init_list();
 ErrorCode add_item(List*, char);
 void print_list(const List);
 void free_list(const List);
-void free_lists_array(const List*, size_t);
+void free_lists_array(List*, size_t);
 
 #endif
 

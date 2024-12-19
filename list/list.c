@@ -22,7 +22,7 @@ ErrorCode add_item(List* list, char letter) {
 	if ((*list).head == NULL) {
 		(*list).head = item;
 	} else {
-		(*(*list).tail).next = item;
+		(*((*list).tail)).next = item;
 	}
 	(*list).tail = item;
 	
@@ -32,11 +32,12 @@ ErrorCode add_item(List* list, char letter) {
 void print_list(const List list) {
 	Item *current = list.head;
 	
+	printf("\"");
 	while (current != NULL) {
 		printf("%c", (*current).letter);
 		current = (*current).next;
 	}
-	printf("\n");
+	printf("\"\n");
 
 	return;
 }
@@ -53,10 +54,12 @@ void free_list(const List list) {
 	return;
 }
 
-void free_lists_array(const List* lists_array, size_t size) {
+void free_lists_array(List* lists_array, size_t size) {
 	for (size_t i = 0; i < size; i++) {
 		free_list(lists_array[i]);
 	}
+
+	free(lists_array);
 
 	return;
 }
